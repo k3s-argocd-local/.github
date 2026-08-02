@@ -1,4 +1,4 @@
-# 📌 k3s + argocd GitOps 무중단 배포 프로젝트
+# 📌 k3s + ArgoCD GitOps 무중단 배포 프로젝트
 
 k3s + ArgoCD GitOps 무중단 배포를 구현하고, API 유실 테스트를 통해 검증하는 프로젝트입니다.
 
