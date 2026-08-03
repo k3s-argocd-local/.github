@@ -6,7 +6,7 @@ k3s + ArgoCD GitOps 무중단 배포를 구현하고, API 유실 테스트를 �
 - [main-api-server](https://github.com/k3s-argocd-local/main-api-server): 백엔드 코드
 - [k8s-manifests](https://github.com/k3s-argocd-local/k8s-manifests): 쿠버네티스 Manifest, K6, k3s + agrocd 세팅 코드
 
-## 🛠️ 기술 스택 (Tech Stack)
+## 🛠️ 기술 스택
 ### Application & CI/CD
 - **Language & Framework:** Java 17 / Spring Boot 3.3.5
 - **CI/CD 파이프라인:** GitHub Actions
@@ -27,7 +27,7 @@ k3s + ArgoCD GitOps 무중단 배포를 구현하고, API 유실 테스트를 �
 6. **안전한 파드 교체:** 인프라 및 애플리케이션 레벨의 최적화 설정을 통해 유실률 0% 상태로 롤링 업데이트를 수행합니다.
 <img width="959" height="415" alt="화면 캡처 2026-08-02 181754" src="https://github.com/user-attachments/assets/73ee6887-bcc8-4c3c-a4fc-b14d937a4c6e" />
 
-## 🧪 API 유실 테스트 방법 (Test Methodology)
+## 🧪 API 유실 테스트 방법
 배포 전환기(Rollout)에서 발생하는 트래픽 누수를 인위적으로 유도하고 아키텍처 설정을 검증하기 위해 다음과 같이 테스트를 설계했습니다.
 
 1. **지연 응답 API 환경 구축**
@@ -43,7 +43,7 @@ k3s + ArgoCD GitOps 무중단 배포를 구현하고, API 유실 테스트를 �
 * **검증 지표(http_req_failed):** 총 490건의 요청 중 **실패율 0.00% (유실 건수 0건)** 달성
 <img width="727" height="570" alt="화면 캡처 2026-08-01 150948" src="https://github.com/user-attachments/assets/a6ad2f56-c5e4-455a-8e97-65a086295a69" />
 
-## 🛠️ 트러블슈팅: 배포 프로세스 중 API 요청 유실 (Troubleshooting)
+## 🛠️ 트러블슈팅: 배포 프로세스 중 API 요청 유실
 
 ### 🚨 문제 상황 (Issue)
 - 초기 아키텍처 상태에서 ArgoCD 배포(RollingUpdate) 진행 시, 구버전 파드가 닫히고 신버전 파드로 교체되는 전환기에 K6 테스트 상에서 HTTP 요청 실패(유실) 현상이 발생했습니다.
@@ -67,7 +67,7 @@ k3s + ArgoCD GitOps 무중단 배포를 구현하고, API 유실 테스트를 �
   - 파드가 종료 절차에 들어가면 인프라 라우팅에서 먼저 격리될 수 있도록 10초간 배포 대기 시간을 부여하여, 전환기에 흘러 들어오는 잔여 요청의 유실을 방지했습니다.
 
 
-## ⚠️ 아키텍처적 한계 및 대안 (Limitations & Alternatives)
+## ⚠️ 아키텍처적 한계 및 대안
 
 ### 1. 인프라 구조의 한계
 - **싱글 마스터 노드 구성:** 비용 절감을 위해 다중 마스터가 아닌 `t3a.medium` 단일 인스턴스 구조를 채택했습니다. 
